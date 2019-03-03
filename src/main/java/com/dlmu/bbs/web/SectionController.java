@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/section")
+@ResponseBody
 public class SectionController {
     @Autowired
    private SectionServiceImpl sectionService;
@@ -20,14 +21,14 @@ public class SectionController {
     @RequestMapping(value="/", method=RequestMethod.POST)
     public String PostSection(@ModelAttribute Section section){
         sectionService.addSection(section);
-        return "Sucess!";
+        return "Success!";
     }
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public Section getSection(@ModelAttribute String id){
+    public Section getSection(@PathVariable String id){
         return sectionService.findById(id);
     }
     @RequestMapping(value="/{id}", method= RequestMethod.PUT)
-    public  String putSection(@ModelAttribute String id,@ModelAttribute Section section){
+    public  String putSection(@PathVariable String id,@ModelAttribute Section section){
         Section section1=sectionService.findById(id);
         section1.setName(section.getName());
         section1.setImageUrl(section.getImageUrl());

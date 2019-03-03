@@ -4,10 +4,7 @@ import com.dlmu.bbs.domain.Post;
 import com.dlmu.bbs.service.PostServiceImpl;
 import com.sun.tracing.dtrace.ModuleAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,12 +24,12 @@ public class PostController {
         return "Success!";
     }
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public  Post getPost(@ModelAttribute String id){
+    public  Post getPost(@PathVariable String id){
         return  postService.findById(id);
 
     }
     @RequestMapping(value="/{id}", method= RequestMethod.PUT)
-    public String putPost(@ModelAttribute String id ,Post post){
+    public String putPost(@PathVariable String id ,@ModelAttribute Post post){
         Post post1=postService.findById(id);
         post1.setDate(post.getDate());
         post1.setSectionId(post.getSectionId());
@@ -40,7 +37,7 @@ public class PostController {
         return "Success!";
     }
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public  String deletePost(@ModelAttribute String id ){
+    public  String deletePost(@PathVariable String id ){
         postService.removeById(id);
         return "Success!";
     }

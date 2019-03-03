@@ -3,10 +3,7 @@ package com.dlmu.bbs.web;
 import com.dlmu.bbs.domain.Followers;
 import com.dlmu.bbs.service.FollowersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,11 +24,11 @@ public class FollowersController {
         return "'Success!";
     }
    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-   public Followers getFollowers(@ModelAttribute String id){
+   public Followers getFollowers(@PathVariable String id){
         return followersService.findById(id);
    }
     @RequestMapping(value="/{id}", method= RequestMethod.PUT)
-    public String putFollowers(@ModelAttribute String id,@ModelAttribute Followers followers){
+    public String putFollowers(@PathVariable String id, @ModelAttribute Followers followers){
         Followers followers1=followersService.findById(id);
         followers1.setMarkdown(followers.getMarkdown());
         followers1.setDate(followers.getDate());
@@ -39,7 +36,7 @@ public class FollowersController {
         return "Success!";
     }
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public  String  deleteFollowers(@ModelAttribute String id){
+    public  String  deleteFollowers(@PathVariable String id){
         followersService.removeById(id);
         return "Success!";
     }

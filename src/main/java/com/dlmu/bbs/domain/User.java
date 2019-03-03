@@ -15,13 +15,13 @@ public class User {
     @Column(nullable = false, length = 100)
     private int age;
     @Column(length = 20)
-    private String avatar;
+    private String avatar;//头像路径
     private int qqNumber;
     @Column(length = 30)
     private String email;
     private int cellphone;
-    private int authority;
-    @Column(nullable = false, length = 20)
+    private int authority;//
+    //@Column(nullable = false, length = 20)
     private String identityCard;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;

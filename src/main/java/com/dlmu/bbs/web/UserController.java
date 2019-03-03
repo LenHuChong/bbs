@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/users")
+//@ResponseBody
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
