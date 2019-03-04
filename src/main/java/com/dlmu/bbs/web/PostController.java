@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/post")
+@ResponseBody
 public class PostController {
     @Autowired
    private PostServiceImpl postService;

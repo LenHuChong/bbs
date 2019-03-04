@@ -49,7 +49,7 @@ public class UserController {
     }
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public String deleteUser(@PathVariable("id") String id){
-        System.out.println(id);
+        //System.out.println(id);
         userService.removeById(id);
         return "success";
     }
