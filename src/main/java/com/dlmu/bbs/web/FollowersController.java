@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/followers")
+@ResponseBody
 public class FollowersController {
     @Autowired
     private FollowersService followersService;

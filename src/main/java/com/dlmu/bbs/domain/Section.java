@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Entity
 public class Section {
     @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "uuid")
     private String uuid;

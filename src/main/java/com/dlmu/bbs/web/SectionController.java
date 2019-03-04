@@ -19,7 +19,7 @@ public class SectionController {
         return sections;
     }
     @RequestMapping(value="/", method=RequestMethod.POST)
-    public String PostSection(@ModelAttribute Section section){
+    public String PostSection(@RequestBody Section section){
         sectionService.addSection(section);
         return "Success!";
     }
@@ -28,7 +28,7 @@ public class SectionController {
         return sectionService.findById(id);
     }
     @RequestMapping(value="/{id}", method= RequestMethod.PUT)
-    public  String putSection(@PathVariable String id,@ModelAttribute Section section){
+    public  String putSection(@PathVariable String id,@RequestBody Section section){
         Section section1=sectionService.findById(id);
         section1.setName(section.getName());
         section1.setImageUrl(section.getImageUrl());

@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 public class Post {
     @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "uuid")
     private String uuid;

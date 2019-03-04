@@ -8,10 +8,12 @@ import java.util.Date;
 @Entity
 public class User {
     @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "uuid")
     private String uuid;
+    @Column(nullable = false,length = 20)
+    private String name;
     @Column(nullable = false, length = 100)
     private int age;
     @Column(length = 20)
@@ -25,6 +27,7 @@ public class User {
     private String identityCard;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
 
     public String getUuid() {
         return uuid;
@@ -82,13 +85,7 @@ public class User {
         this.authority = authority;
     }
 
-    public String getIdentitycard() {
-        return identityCard;
-    }
 
-    public void setIdentitycard(String identityCard) {
-        this.identityCard = identityCard;
-    }
 
     public Date getDate() {
         return date;
@@ -96,5 +93,24 @@ public class User {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQqNumber(int qqNumber) {
+        this.qqNumber = qqNumber;
+    }
+
+    public String getIdentityCard() {
+        return identityCard;
+    }
+
+    public void setIdentityCard(String identityCard) {
+        this.identityCard = identityCard;
     }
 }

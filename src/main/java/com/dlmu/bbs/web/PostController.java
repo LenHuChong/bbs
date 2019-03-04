@@ -6,6 +6,7 @@ import com.sun.tracing.dtrace.ModuleAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,17 +20,19 @@ public class PostController {
         return posts;
     }
     @RequestMapping(value="/", method=RequestMethod.POST)
-    public String  postPost(@ModelAttribute Post post){
+    public String  postPost(@RequestBody Post post){
         postService.addPost(post);
         return "Success!";
     }
+
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public  Post getPost(@PathVariable String id){
         return  postService.findById(id);
 
     }
+
     @RequestMapping(value="/{id}", method= RequestMethod.PUT)
-    public String putPost(@PathVariable String id ,@ModelAttribute Post post){
+    public String putPost(@PathVariable String id ,@RequestBody Post post){
         Post post1=postService.findById(id);
         post1.setDate(post.getDate());
         post1.setSectionId(post.getSectionId());
