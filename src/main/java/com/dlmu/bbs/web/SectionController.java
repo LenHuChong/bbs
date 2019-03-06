@@ -21,6 +21,7 @@ public class SectionController {
     @RequestMapping(value="/", method=RequestMethod.POST)
     public String PostSection(@RequestBody Section section){
         sectionService.addSection(section);
+        sectionService.set(section.getName(),section);
         return "Success!";
     }
     @RequestMapping(value="/{id}", method=RequestMethod.GET)

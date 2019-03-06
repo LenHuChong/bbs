@@ -13,6 +13,17 @@ public class User implements Serializable {
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "uuid")
     private String uuid;
+    @Column(nullable = false,length = 15)
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Column(length = 20,nullable = false)
+   private String password;
     @Column(nullable = false,length = 20)
     private String name;
     @Column(nullable = false, length = 100)
@@ -28,6 +39,7 @@ public class User implements Serializable {
     private String identityCard;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
 
 
 

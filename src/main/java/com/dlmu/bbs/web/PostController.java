@@ -23,6 +23,7 @@ public class PostController {
     @RequestMapping(value="/", method=RequestMethod.POST)
     public String  postPost(@RequestBody Post post){
         postService.addPost(post);
+        postService.set(post.getMarkdown(),post);
         return "Success!";
     }
 

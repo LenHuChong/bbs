@@ -22,8 +22,9 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/" ,method = RequestMethod.GET)
-    public List<User> getUserList(){
-        List<User> users=userService.getAllUsers();
+    public List<User> getUserList(List<User> userList){
+
+        List<User>  users=userService.getAllUsers();
         return users ;
 
     }
@@ -33,6 +34,7 @@ public class UserController {
      * post方法缓存机制
      * 数据以list形式大量post到缓存中
      * 当数据超过缓存设定是由缓存读入数据库
+     * 并将email->password键值对大量储存与缓存中进行登录使用
      *
      * @param userList
      * @return
@@ -40,21 +42,16 @@ public class UserController {
     @RequestMapping(value="/", method=RequestMethod.POST)
     public String postUser(@RequestBody List<User> userList){
         for (User user: userList){
-           //userService.set(user.getEmail(),user.getName());
+           userService.set(user.getEmail(),user.getPassword());
             userService.push("User",user);
 
-            if(userService.getLen("User")>=2){
+            if(userService.getLen("User")>=10){
 
                 String str =userService.rightPop("User");
                User user1=JsonUtil.convertString2Obj(str,User.class);
                 userService.addUser(user1);
-
             }
-
-
-        }
-
-
+    }
         return "Success!";
     }
 
@@ -68,7 +65,10 @@ public class UserController {
     public String putUser(@PathVariable String id, @RequestBody User user){
         User user1=userService.findById(id);
         user1.setAuthority(user.getAuthority());
+        user1.setAvatar(user.getAvatar());
         user1.setAge(user.getAge());
+        user1.setName(user.getName());
+        user1.setCellphone(user.getCellphone());
         userService.updataUser(user1);
         return  "Success!";
     }
