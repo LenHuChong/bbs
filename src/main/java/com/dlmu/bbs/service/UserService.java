@@ -4,7 +4,7 @@ import com.dlmu.bbs.domain.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService  {
     List<User> getAllUsers();
     User findById(String id);
     void updataUser(User user);

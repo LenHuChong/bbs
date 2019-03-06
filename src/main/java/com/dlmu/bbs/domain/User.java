@@ -3,10 +3,11 @@ package com.dlmu.bbs.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class User {
+public class User implements Serializable {
     @Id
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "system-uuid")
@@ -19,7 +20,7 @@ public class User {
     @Column(length = 20)
     private String avatar;//头像路径
     private int qqNumber;
-    @Column(length = 30)
+    @Column(length = 30,nullable = false)
     private String email;
     private int cellphone;
     private int authority;//
@@ -27,6 +28,7 @@ public class User {
     private String identityCard;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
 
 
     public String getUuid() {
